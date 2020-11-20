@@ -1,0 +1,58 @@
+:root{
+    --main-color: #076196;
+}
+
+body{
+    background-color: var(--main-color);
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#author{
+    font-size: 16pt;
+}
+#creator{
+    color: white;
+    font-style: bold;
+    font-size: 14pt;
+}
+
+#footer{
+    position: relative;
+    top: 5%;
+}
+
+#new-quote{
+    background-color: var(--main-color);
+    border-radius: 15px;
+    font-style: bold;
+    font-size: 16pt;
+}
+
+#quote-box{
+    background-color: aliceblue;
+    border-radius: 10px;
+    height: 400px;
+    margin-top: 150px;
+    width: 800px;
+}
+
+#quote-container{
+    height: 300px;
+    padding: 40px 10px;
+    position: relative;
+    
+}
+
+#text{
+    font-style: italic;
+    font-size: 24pt;
+    font-weight: bold;
+}
+
+#tweet-quote {
+    color: var(--main-color);
+}
+
+#tweet-quote i{
+    font-size: 40pt;
+}
