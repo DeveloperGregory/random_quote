@@ -1,5 +1,5 @@
 :root{
-    --main-color: #076196;
+    --main-color: rgb(5,6,8);
 }
 
 body{
@@ -10,6 +10,7 @@ body{
 #author{
     font-size: 16pt;
 }
+
 #creator{
     color: white;
     font-style: bold;
@@ -24,8 +25,13 @@ body{
 #new-quote{
     background-color: var(--main-color);
     border-radius: 15px;
+    color: white;
     font-style: bold;
     font-size: 16pt;
+}
+
+#new-quote:hover{
+    opacity: 75%;
 }
 
 #quote-box{

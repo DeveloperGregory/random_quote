@@ -1,12 +1,13 @@
 let randomColors = [
-    '#6bdf12',
-    '#57d29d',
-    '#65179c',
-    '#74125c',
-    '#ba265b',
-    '#076196'    
-]
+    {r : 107, g: 223, b: 18},
+    {r : 87, g: 210, b: 157},
+    {r : 101, g: 23, b: 156},
+    {r : 116, g: 18, b: 92},
+    {r : 186, g: 38, b: 91},
+    {r : 7, g: 97, b: 150}
+];
 const root = document.documentElement;
+const reTweet = document.getElementById('tweet-quote');
 let currColor = 5;
 let displayText = document.getElementById('text');
 let displayAuthor = document.getElementById('author');
@@ -16,13 +17,19 @@ let currQuote = '';
 let currAuthor = '';
 
 
+function updateBackground(r,g,b){
+    setTimeout(() => root.style.setProperty('--main-color', "rgb("+r+","+g+","+b+")"),10);
+}
+
 function loadQuotes(){
     fetch(quotesURL)  //research this
         .then(res => res.json())
         .then((out) => {
             quotesFromUrl = out;
+            getNewQuote();
     })
     .catch(err => { throw err });
+    
 }
 
 function changeColor(){
@@ -30,8 +37,41 @@ function changeColor(){
     if(newColor == currColor){
         changeColor();
     }
+    
+    let oldRed = randomColors[currColor].r;
+    let oldGreen = randomColors[currColor].g;
+    let oldBlue = randomColors[currColor].b;
+    
+    let newRed = randomColors[newColor].r;
+    let newGreen = randomColors[newColor].g;
+    let newBlue = randomColors[newColor].b;
+    let diffRed = (newRed > oldRed) ? 1 : -1;
+    let diffGreen = (newGreen > oldGreen) ? 1 : -1;
+    let diffBlue = (newBlue > oldBlue) ? 1 : -1;
+    
+    let again = true;
+    while(again){
+        if(oldRed != newRed){
+            oldRed = oldRed + diffRed;
+        }
+        if(oldGreen != newGreen){
+            oldGreen = oldGreen + diffGreen;
+        }
+        if(oldBlue != newBlue){
+            oldBlue = oldBlue + diffBlue;
+        }
+        
+        again = (oldRed != newRed && oldGreen != newGreen && oldBlue != newBlue)
+        console.log(again)
+        console.log(oldRed + "," + oldGreen + "," + oldBlue)
+        
+        updateBackground(newRed, newGreen, newBlue);
+    }
+    
+
     currColor = newColor;
-    root.style.setProperty('--main-color', randomColors[newColor]);
+    
+    updateBackground(newRed,newGreen,newBlue);
 }
 
 function getNewQuote(){
@@ -41,9 +81,12 @@ function getNewQuote(){
     currAuthor = quotesFromUrl.quotes[newIndex].author;
     displayText.innerHTML = '"' + currQuote + '"';
     displayAuthor.innerHTML = '-' + currAuthor;
+    reTweet.href = 'https://twitter.com/intent/tweet?text=' + currQuote + " -" + currAuthor;
 }
 
-const newQuote = document.getElementById('new-quote');
+loadQuotes();
 
+const newQuote = document.getElementById('new-quote');
 newQuote.addEventListener('click', getNewQuote);
-loadQuotes()
+
+
