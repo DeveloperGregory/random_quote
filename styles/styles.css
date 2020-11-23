@@ -5,6 +5,7 @@
 body{
     background-color: var(--main-color);
     font-family: 'Times New Roman', Times, serif;
+    transition: background-color 1s;
 }
 
 #author{

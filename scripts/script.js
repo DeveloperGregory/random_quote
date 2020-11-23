@@ -38,37 +38,11 @@ function changeColor(){
         changeColor();
     }
     
-    let oldRed = randomColors[currColor].r;
-    let oldGreen = randomColors[currColor].g;
-    let oldBlue = randomColors[currColor].b;
     
     let newRed = randomColors[newColor].r;
     let newGreen = randomColors[newColor].g;
     let newBlue = randomColors[newColor].b;
-    let diffRed = (newRed > oldRed) ? 1 : -1;
-    let diffGreen = (newGreen > oldGreen) ? 1 : -1;
-    let diffBlue = (newBlue > oldBlue) ? 1 : -1;
     
-    let again = true;
-    while(again){
-        if(oldRed != newRed){
-            oldRed = oldRed + diffRed;
-        }
-        if(oldGreen != newGreen){
-            oldGreen = oldGreen + diffGreen;
-        }
-        if(oldBlue != newBlue){
-            oldBlue = oldBlue + diffBlue;
-        }
-        
-        again = (oldRed != newRed && oldGreen != newGreen && oldBlue != newBlue)
-        console.log(again)
-        console.log(oldRed + "," + oldGreen + "," + oldBlue)
-        
-        updateBackground(newRed, newGreen, newBlue);
-    }
-    
-
     currColor = newColor;
     
     updateBackground(newRed,newGreen,newBlue);
